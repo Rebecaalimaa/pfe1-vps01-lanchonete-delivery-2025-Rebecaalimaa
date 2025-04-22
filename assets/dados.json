@@ -9,7 +9,8 @@
             "Alface",
             "Tomate"
         ],
-        "preco": 15.00
+        "preco": 15.00,
+        "imagem":"../assets/Hamburguer.jpg"
     },
     {
         "id": 2,
