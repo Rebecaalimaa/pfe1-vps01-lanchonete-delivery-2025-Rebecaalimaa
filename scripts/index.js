@@ -1,6 +1,4 @@
-// script.js
 
-// Dados de produtos da lanchonete
 const produtos = [
     { id: 1, nome: "Hamburguer", preco: 15.00 },
     { id: 2, nome: "X-Burguer", preco: 18.00 },
@@ -12,7 +10,6 @@ const produtos = [
     { id: 8, nome: "Refrigerante - 2L", preco: 10.00 }
 ];
 
-// DOM Elements
 const clienteInput = document.getElementById("cliente");
 const enderecoInput = document.getElementById("endereco");
 const produtoSelect = document.getElementById("produto");
@@ -21,7 +18,6 @@ const execucaoContainer = document.getElementById("execucao");
 const entregaContainer = document.getElementById("entrega");
 const horaData = document.getElementById("hora-data");
 
-// Inicialização
 window.onload = () => {
     atualizarDataHora();
     preencherProdutos();
