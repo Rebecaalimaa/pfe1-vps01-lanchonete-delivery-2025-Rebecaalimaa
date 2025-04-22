@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanchonete Delivery</title>
+    <link rel="stylesheet" href="../styles/index.css">
+</head>
+<body>
+    <header>
+        <h1>Lanchonete Delivery</h1>
+        <button id="btn-finalizados" onclick="window.location.href='finalizados.html'">Concluídos</button>
+    </header>
+
+    <main>
+        <section class="formulario">
+            <label>Cliente: <input type="text" id="cliente"></label>
+            <label>Endereço: <input type="text" id="endereco"></label>
+            <label>Produto: 
+                <select id="produto">
+                    <option value="X-Burguer">X-Burguer</option>
+                    <option value="X-Egg">X-Egg</option>
+                    <option value="X-Bacon">X-Bacon</option>
+                    <option value="X-Tudo">X-Tudo</option>
+                    <option value="X-Frango">X-Frango</option>
+                    <option value="Refrigerante - Lata">Refrigerante - Lata</option>
+                    <option value="Refrigerante - 2L">Refrigerante - 2L</option>
+                </select>
+            </label>
+            <button id="btn-pedido">Gerar Pedido</button>
+            <div id="data-hora"></div>
+        </section>
+
+        <section class="pedidos">
+            <div class="coluna" id="emExecucao">
+                <h2>Em execução</h2>
+                <div id="listaExecucao"></div>
+            </div>
+            <div class="coluna" id="aCaminho">
+                <h2>A caminho</h2>
+                <div id="listaCaminho"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../scripts/index.js"></script>
+</body>
+</html>
