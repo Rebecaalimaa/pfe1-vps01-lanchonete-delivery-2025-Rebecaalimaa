@@ -10,7 +10,6 @@
 <body>
     <header>
         <h1>Lanchonete Delivery</h1>
-        <button id="btn-finalizados" onclick="window.location.href='finalizados.html'">Concluídos</button>
     </header>
 
     <main>
@@ -18,27 +17,34 @@
             <label>Cliente: <input type="text" id="cliente"></label>
             <label>Endereço: <input type="text" id="endereco"></label>
             <label>Produto: 
-                <select id="../assets/dados.json">
+                <select id="produto">
+                    <option value="">-- Selecione um produto --</option>
                     <option value="Hamburguer">Hamburguer</option>
                     <option value="X-Burguer">X-Burguer</option>
                     <option value="X-Salada">X-Salada</option>
                     <option value="X-Bacon">X-Bacon</option>
                     <option value="X-Egg">X-Egg</option>
                     <option value="X-Tudo">X-Tudo</option>
+                    <option value="Refrigerante - Lata">Refrigerante - Lata</option>
+                    <option value="Refrigerante - 2L">Refrigerante - 2L</option>
                 </select>
             </label>
-            <button id="btn-pedido">Gerar Pedido</button>
-            <div id="data-hora"></div>
+            <button id="gerarPedido">Gerar Pedido</button>
+            <input id="hora-data" readonly />
         </section>
 
         <section class="pedidos">
-            <div class="coluna" id="emExecucao">
-                <h2>Em execução</h2>
-                <div id="listaExecucao"></div>
+            <div class="coluna">
+                <h2>Em Execução</h2>
+                <div id="execucao"></div>
             </div>
-            <div class="coluna" id="aCaminho">
-                <h2>A caminho</h2>
-                <div id="listaCaminho"></div>
+            <div class="coluna">
+                <h2>A Caminho</h2>
+                <div id="entrega"></div>
+            </div>
+            <div class="coluna">
+                <h2>Finalizados</h2>
+                <div id="finalizados"></div>
             </div>
         </section>
     </main>

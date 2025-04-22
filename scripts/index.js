@@ -1,4 +1,3 @@
-
 const produtos = [
     { id: 1, nome: "Hamburguer", preco: 15.00 },
     { id: 2, nome: "X-Burguer", preco: 18.00 },
@@ -16,6 +15,7 @@ const produtoSelect = document.getElementById("produto");
 const gerarPedidoBtn = document.getElementById("gerarPedido");
 const execucaoContainer = document.getElementById("execucao");
 const entregaContainer = document.getElementById("entrega");
+const finalizadosContainer = document.getElementById("finalizados");
 const horaData = document.getElementById("hora-data");
 
 window.onload = () => {
@@ -75,8 +75,10 @@ function gerarPedido() {
 function listarPedidos() {
     execucaoContainer.innerHTML = "";
     entregaContainer.innerHTML = "";
+    finalizadosContainer.innerHTML = "";
 
     const pedidos = JSON.parse(localStorage.getItem("pedidos") || "[]");
+    const finalizados = JSON.parse(localStorage.getItem("finalizados") || "[]");
 
     pedidos.forEach(pedido => {
         const card = document.createElement("div");
@@ -86,7 +88,7 @@ function listarPedidos() {
             <p><strong>Produto:</strong> ${pedido.produto}</p>
             <p><strong>Endereço:</strong> ${pedido.endereco}</p>
             <p><strong>Data:</strong> ${pedido.data}</p>
-            <p><strong>Horario:</strong> ${pedido.hora}</p>
+            <p><strong>Horário:</strong> ${pedido.hora}</p>
         `;
 
         const btn = document.createElement("button");
@@ -107,6 +109,20 @@ function listarPedidos() {
             card.appendChild(btn);
             entregaContainer.appendChild(card);
         }
+    });
+
+    finalizados.forEach(pedido => {
+        const card = document.createElement("div");
+        card.className = "card finalizado";
+        card.innerHTML = `
+            <p><strong>Cliente:</strong> ${pedido.cliente}</p>
+            <p><strong>Produto:</strong> ${pedido.produto}</p>
+            <p><strong>Endereço:</strong> ${pedido.endereco}</p>
+            <p><strong>Data:</strong> ${pedido.data}</p>
+            <p><strong>Horário Pedido:</strong> ${pedido.hora}</p>
+            <p><strong>Entregue às:</strong> ${pedido.horaChegada}</p>
+        `;
+        finalizadosContainer.appendChild(card);
     });
 }
 
@@ -130,6 +146,8 @@ function finalizarPedido(id, horaEntrega) {
     const novosPedidos = pedidos.filter(p => p.id !== id);
     localStorage.setItem("pedidos", JSON.stringify(novosPedidos));
     localStorage.setItem("finalizados", JSON.stringify(finalizados));
+
+    alert("Pedido finalizado com sucesso!");
     listarPedidos();
 }
 
