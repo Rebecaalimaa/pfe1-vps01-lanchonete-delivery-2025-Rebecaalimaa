@@ -127,25 +127,22 @@ function finalizarPedido(id, horaEntrega) {
 
 
     function calcularPreco(nomeProduto) {
-        // Procura o produto pelo nome
         const produto = produtos.find(p => p.nome === nomeProduto);
-    
-        // Se o produto for encontrado e tiver preço, retorna o preço
+
         if (produto) {
-            // Caso o preço não esteja definido, calcula com base no número de ingredientes
+    
             if (produto.preco !== undefined) {
                 return produto.preco;
             } else {
-                // Preço base para produtos sem preço definido
+        
                 const precoBase = 10.00;
-                const custoIngredienteExtra = 2.00; // Preço adicional por ingrediente
+                const custoIngredienteExtra = 2.00; 
     
-                // Calcula o preço com base no número de ingredientes
+               
                 return precoBase + (produto.ingredientes.length - 3) * custoIngredienteExtra;
             }
         }
-    
-        // Se o produto não for encontrado, retorna 0
+
         return 0;
     }
     alert("Pedido finalizado com sucesso!");
