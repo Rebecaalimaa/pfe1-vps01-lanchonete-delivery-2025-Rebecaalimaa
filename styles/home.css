@@ -32,12 +32,11 @@ header {
     background-color: var(--c2);
     padding: 15px;
     box-shadow: 0 2px 5px var(--c1);
+}
 
-    & button{
-        background-size: cover;
-        background-color: transparent;
-    }
-
+header button {
+    background-size: cover;
+    background-color: transparent;
 }
 
 header h1 {
@@ -124,8 +123,7 @@ button:hover {
 }
 
 #execucao,
-#entrega,
-#finalizados {
+#entrega {
     display: flex;
     flex-direction: column;
     gap: 10px;

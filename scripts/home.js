@@ -15,21 +15,11 @@ const produtoSelect = document.getElementById("produto");
 const gerarPedidoBtn = document.getElementById("gerarPedido");
 const execucaoContainer = document.getElementById("execucao");
 const entregaContainer = document.getElementById("entrega");
-const finalizadosContainer = document.getElementById("finalizados");
-const horaData = document.getElementById("hora-data");
 
 window.onload = () => {
-    atualizarDataHora();
     preencherProdutos();
     listarPedidos();
 };
-
-function atualizarDataHora() {
-    const agora = new Date();
-    const data = agora.toLocaleDateString();
-    const hora = agora.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-    horaData.value = `Hoje é = ${data} Agora são = ${hora}`;
-}
 
 function preencherProdutos() {
     produtos.forEach(p => {
@@ -75,10 +65,8 @@ function gerarPedido() {
 function listarPedidos() {
     execucaoContainer.innerHTML = "";
     entregaContainer.innerHTML = "";
-    finalizadosContainer.innerHTML = "";
 
     const pedidos = JSON.parse(localStorage.getItem("pedidos") || "[]");
-    const finalizados = JSON.parse(localStorage.getItem("finalizados") || "[]");
 
     pedidos.forEach(pedido => {
         const card = document.createElement("div");
@@ -109,20 +97,6 @@ function listarPedidos() {
             card.appendChild(btn);
             entregaContainer.appendChild(card);
         }
-    });
-
-    finalizados.forEach(pedido => {
-        const card = document.createElement("div");
-        card.className = "card finalizado";
-        card.innerHTML = `
-            <p><strong>Cliente:</strong> ${pedido.cliente}</p>
-            <p><strong>Produto:</strong> ${pedido.produto}</p>
-            <p><strong>Endereço:</strong> ${pedido.endereco}</p>
-            <p><strong>Data:</strong> ${pedido.data}</p>
-            <p><strong>Horário Pedido:</strong> ${pedido.hora}</p>
-            <p><strong>Entregue às:</strong> ${pedido.horaChegada}</p>
-        `;
-        finalizadosContainer.appendChild(card);
     });
 }
 
