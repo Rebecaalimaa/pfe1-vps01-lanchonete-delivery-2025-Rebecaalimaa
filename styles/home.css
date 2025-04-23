@@ -32,6 +32,12 @@ header {
     background-color: var(--c2);
     padding: 15px;
     box-shadow: 0 2px 5px var(--c1);
+
+    & button{
+        background-size: cover;
+        background-color: transparent;
+    }
+
 }
 
 header h1 {

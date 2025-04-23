@@ -8,12 +8,12 @@
     th, td {
       padding: 8px;
       text-align: left;
-      border: 1px solid #CCCCCC;
+      border: 1px solid #000000;
     }
 
     th {
-      background-color: #333333;
-      color: white;
+      background-color: #ffcc00;
+      color: rgb(5, 5, 5);
     }
 
     tr:nth-child(even) {
