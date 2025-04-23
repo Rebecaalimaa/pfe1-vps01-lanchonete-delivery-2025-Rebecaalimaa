@@ -113,16 +113,44 @@ function finalizarPedido(id, horaEntrega) {
     const pedido = pedidos.find(p => p.id === id);
     if (!pedido) return;
 
-    const finalizados = JSON.parse(localStorage.getItem("finalizados") || "[]");
+    const agora = new Date();
+    pedido.horaSaida = agora.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     pedido.horaChegada = horaEntrega;
+    pedido.preco = calcularPreco(pedido.produto); // Chama a função calcularPreco
+
+    const finalizados = JSON.parse(localStorage.getItem("finalizados") || "[]");
     finalizados.push(pedido);
 
     const novosPedidos = pedidos.filter(p => p.id !== id);
     localStorage.setItem("pedidos", JSON.stringify(novosPedidos));
     localStorage.setItem("finalizados", JSON.stringify(finalizados));
 
+
+    function calcularPreco(nomeProduto) {
+        // Procura o produto pelo nome
+        const produto = produtos.find(p => p.nome === nomeProduto);
+    
+        // Se o produto for encontrado e tiver preço, retorna o preço
+        if (produto) {
+            // Caso o preço não esteja definido, calcula com base no número de ingredientes
+            if (produto.preco !== undefined) {
+                return produto.preco;
+            } else {
+                // Preço base para produtos sem preço definido
+                const precoBase = 10.00;
+                const custoIngredienteExtra = 2.00; // Preço adicional por ingrediente
+    
+                // Calcula o preço com base no número de ingredientes
+                return precoBase + (produto.ingredientes.length - 3) * custoIngredienteExtra;
+            }
+        }
+    
+        // Se o produto não for encontrado, retorna 0
+        return 0;
+    }
     alert("Pedido finalizado com sucesso!");
     listarPedidos();
 }
+
 
 gerarPedidoBtn.addEventListener("click", gerarPedido);

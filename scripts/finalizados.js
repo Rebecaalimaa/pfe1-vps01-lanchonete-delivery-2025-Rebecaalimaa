@@ -20,12 +20,13 @@ function carregarPedidosFinalizados() {
       <td>${p.produto}</td>
       <td>${p.data}</td>
       <td>${p.hora}</td>
-      <td>${p.saida || '-'}</td>
-      <td>${p.entrega || '-'}</td>
+      <td>${p.horaChegada  || '-'}</td>
+      <td>${p.preco  || '-'}</td>
     `;
     tbody.appendChild(tr);
     if (p.preco) total += p.preco;
   });
+  
 
   totalDiv.textContent = `Total Geral R$: ${total.toFixed(2)}`;
 }
